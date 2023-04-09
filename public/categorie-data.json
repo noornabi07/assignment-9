@@ -1,0 +1,26 @@
+[
+    {
+      "id": "1",
+      "picture": "https://i.ibb.co/6HZhrD5/categorie1.png",
+      "name": "Account & Finance",
+      "job_quantity": 300
+    },
+    {
+      "id": "2",
+      "picture": "https://i.ibb.co/JKVr11k/categorie2.png",
+      "name": "Creative Design",
+      "job_quantity": 100
+    },
+    {
+      "id": "3",
+      "picture": "https://i.ibb.co/PYns4vm/categorie3.png",
+      "name": "Marketing & Sales",
+      "job_quantity": 150
+    },
+    {
+      "id": "4",
+      "picture": "https://i.ibb.co/y6SmHc5/categorie4.png",
+      "name": "Engineering Job",
+      "job_quantity": 224
+    }
+  ]
