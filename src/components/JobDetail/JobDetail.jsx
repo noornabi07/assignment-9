@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot, faCircleDollarToSlot, faBriefcase, faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { addToDb, getShoppingCart } from '../../utilities/fakeDb';
 
 const JobDetail = () => {
     const jobId = useParams();
@@ -13,7 +14,26 @@ const JobDetail = () => {
     }, [])
 
     const jobDetail = details.find(detail => detail.id === jobId.id);
-    console.log(jobDetail)
+
+    useEffect( ()=>{
+        const appliedJob = getShoppingCart()
+        let saveJob = []
+        for(const id in appliedJob){
+            const addedJob = details.find(job => job.id === id);
+            if(addedJob){
+                const quantity = appliedJob[id];
+                addedJob.quantity = quantity;
+                saveJob.push(addedJob)
+            }
+        }
+        setDetails(saveJob)
+    }, [])
+
+     const handleViewDetails = (jobs) =>{
+      const newJob = [...details, jobs];
+      setDetails(newJob)
+      addToDb(jobs.id)
+    }
 
     return (
         <div >
@@ -23,40 +43,43 @@ const JobDetail = () => {
 
             <div className='flex items-center gap-40 px-32 mt-20 pb-5'>
                 <div className='w-2/4'>
-                    <p className=' text-xl text-gray-700 mb-5'><span className='font-bold text-slate-900'>Job Description:</span> {jobDetail && jobDetail.description}</p>
-                    <p className=' text-xl text-gray-700 mb-5'><span className='font-bold text-slate-900'>Job Responsibility:</span> {jobDetail && jobDetail.resposibility}</p>
-                    <p className=' text-xl text-gray-700 mb-5'><span className='font-bold text-slate-900'>Eductaional Requirement</span > <br /> {jobDetail && jobDetail.requirement}
+                    <p className=' text-xl text-gray-700 mb-5'><span className='font-bold text-slate-900 text-2xl'>Job Description:</span> {jobDetail && jobDetail.description}</p>
+                    <p className=' text-xl text-gray-700 mb-5'><span className='font-bold text-slate-900 text-2xl'>Job Responsibility:</span> {jobDetail && jobDetail.resposibility}</p>
+                    <p className=' text-xl text-gray-700 mb-5'><span className='font-bold text-slate-900 text-2xl'>Eductaional Requirement:</span > <br /> {jobDetail && jobDetail.requirement}
                     </p>
-                    <h6 className=' text-xl text-gray-700'><span className='font-bold text-slate-900'>Experience:</span> <br />
+                    <h6 className=' text-xl text-gray-700'><span className='font-bold text-slate-900 text-2xl'>Experience:</span> <br />
                         {jobDetail && jobDetail.experience}
                     </h6>
                 </div>
 
-                <div className='bg-slate-900 text-white p-20 rounded'>
+                <div className='bg-purple-100 p-20 rounded'>
                     <h2 className='font-bold text-2xl mb-6'>Job Details</h2>
+                    <hr className='border-2 border-gray-600 my-3'/>
                     <div className='flex gap-2 items-center mb-5'>
                         <FontAwesomeIcon className='text-xl font-bold text-gray-500 mr-2' icon={faCircleDollarToSlot} />
-                        <p className='font-semibold text-xl'>Salary: {jobDetail && jobDetail.salary} (Per Month)</p>
+                        <p className='font-semibold text-xl'><span className='font-bold'>Salary:</span> {jobDetail && jobDetail.salary} (Per Month)</p>
                     </div>
                     <div className='flex gap-1 mb-5 items-center'>
                         <FontAwesomeIcon className='text-xl font-bold text-gray-500 mr-2' icon={faBriefcase} />
-                        <p className='font-semibold text-xl'>Job Title: {jobDetail && jobDetail.title}</p>
+                        <p className='font-semibold text-xl'><span className='font-bold'>Job Title:</span> {jobDetail && jobDetail.title}</p>
                     </div>
 
-                    <h2>Connect Information</h2>
+                    <h2 className='font-bold text-2xl mb-6'>Connect Information</h2>
+                    <hr className='border-2 border-gray-600 my-3'/>
                     <div className='flex gap-1 items-center mb-5'>
                         <FontAwesomeIcon className='text-xl font-bold text-gray-500 mr-2' icon={faPhone} />
-                        <p className='font-semibold text-xl'>Phone: {jobDetail && jobDetail.phone}</p>
+                        <p className='font-semibold text-xl'><span className='font-bold'>Phone:</span> {jobDetail && jobDetail.phone}</p>
                     </div>
                     <div className='flex gap-1 items-center mb-5'>
                         <FontAwesomeIcon className='text-xl font-bold text-gray-500 mr-2' icon={faEnvelope} />
-                        <p className='font-semibold text-xl'>Email: {jobDetail && jobDetail.email}</p>
+                        <p className='font-semibold text-xl'><span className='font-bold'>Email:</span> {jobDetail && jobDetail.email}</p>
                     </div>
                     <div className='flex gap-1 items-center'>
                         <FontAwesomeIcon className='text-xl font-bold text-gray-500 mr-2' icon={faLocationDot} />
-                        <p className='font-semibold text-xl'>Address: {jobDetail && jobDetail.location}</p>
+                        <p className='font-semibold text-xl'><span className='font-bold'>Address:</span> {jobDetail && jobDetail.location}</p>
                     </div>
-                    <button>Apply Now</button>
+
+                    <button onClick={() => handleViewDetails(jobDetail)} className='mt-8 hover:bg-purple-600 bg-purple-500 py-3 px-4 font-bold text-white rounded w-full'>Apply Now</button>
                 </div>
             </div>
         </div>

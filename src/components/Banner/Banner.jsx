@@ -8,7 +8,6 @@ import { addToDb, getShoppingCart } from '../../utilities/fakeDb';
 
 const Banner = () => {
     const [category, setCategory] = useState([])
-    const [feature, setFeature] = useState([])
     const features = useLoaderData()
 
     useEffect(() => {
@@ -16,30 +15,6 @@ const Banner = () => {
             .then(res => res.json())
             .then(data => setCategory(data))
     }, [])
-
-    useEffect( ()=>{
-        const appliedJob = getShoppingCart()
-        let saveJob = []
-        for(const id in appliedJob){
-            const addedJob = features.find(job => job.id === id);
-            if(addedJob){
-                const quantity = appliedJob[id];
-                addedJob.quantity = quantity;
-                saveJob.push(addedJob)
-            }
-        }
-        setFeature(saveJob)
-    }, [features])
-
-    // const handleViewDetails = shop =>{
-    //   const newJob = [...feature, shop];
-    //   setFeature(newJob)
-    //   addToDb(shop.id)
-    // }
-
-    // const handleViewDetails = shop =>{
-    //     console.log(shop)
-    //   }
 
     return (
         <div>
