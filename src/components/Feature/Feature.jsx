@@ -1,8 +1,9 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot, faCircleDollarToSlot } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom';
 
-const Feature = ({ feature, handleViewDetails }) => {
+const Feature = ({ feature }) => {
     const { id, logo, name, title, type1, type2, address, salary } = feature;
     return (
         <div className='border-2 border-gray-400 p-6 rounded-lg'>
@@ -15,7 +16,7 @@ const Feature = ({ feature, handleViewDetails }) => {
             </div>
             <div className='flex gap-8'>
                 <div className='flex items-center'>
-                  <FontAwesomeIcon className='text-xl font-bold text-gray-500 mr-2' icon={faLocationDot} />
+                    <FontAwesomeIcon className='text-xl font-bold text-gray-500 mr-2' icon={faLocationDot} />
                     <p className='font-semibold text-xl text-gray-500'>{address}</p>
                 </div>
                 <div className='flex items-center'>
@@ -23,7 +24,9 @@ const Feature = ({ feature, handleViewDetails }) => {
                     <p className='font-semibold text-xl text-gray-500'>{salary}</p>
                 </div>
             </div>
-            <button onClick={() => handleViewDetails(feature)} className='mt-4 hover:bg-purple-600 bg-purple-500 py-2 px-4 font-bold text-white rounded'>View Details</button>
+            <Link to={`/${id}`}>
+                <button className='mt-4 hover:bg-purple-600 bg-purple-500 py-2 px-4 font-bold text-white rounded'>View Details</button>
+            </Link>
         </div>
     );
 };

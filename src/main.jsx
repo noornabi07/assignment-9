@@ -13,6 +13,7 @@ import Banner from './components/Banner/Banner';
 import Applied from './components/Applied/Applied';
 import getData from '../src/fetchData'
 import appliedData from './appliedData';
+import JobDetail from './components/JobDetail/JobDetail';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
         path: 'applied',
         element: <Applied></Applied>,
         loader: appliedData
+      },
+      {
+        path: '/:id',
+        element: <JobDetail></JobDetail>
       }
     ]
   }

@@ -3,7 +3,6 @@ import img from '../../../public/banner-cover.png'
 import { useLoaderData } from 'react-router-dom';
 import Category from '../Category/Category';
 import Feature from '../Feature/Feature';
-import JobDetail from '../JobDetail/JobDetail';
 import { addToDb, getShoppingCart } from '../../utilities/fakeDb';
 
 
@@ -32,11 +31,15 @@ const Banner = () => {
         setFeature(saveJob)
     }, [features])
 
-    const handleViewDetails = shop =>{
-      const newJob = [...feature, shop]
-      setFeature(newJob)
-      addToDb(shop.id)
-    }
+    // const handleViewDetails = shop =>{
+    //   const newJob = [...feature, shop];
+    //   setFeature(newJob)
+    //   addToDb(shop.id)
+    // }
+
+    // const handleViewDetails = shop =>{
+    //     console.log(shop)
+    //   }
 
     return (
         <div>
@@ -77,7 +80,6 @@ const Banner = () => {
                         features.slice(0, 4).map(feature => <Feature
                             key={feature.id}
                             feature={feature}
-                            handleViewDetails={handleViewDetails}
                         ></Feature>)
                     }
                 </div>
