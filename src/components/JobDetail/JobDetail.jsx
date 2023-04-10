@@ -29,7 +29,7 @@ const JobDetail = () => {
         setDetails(saveJob)
     }, [])
 
-     const handleViewDetails = (jobs) =>{
+     const handleAppliedJob = (jobs) =>{
       const newJob = [...details, jobs];
       setDetails(newJob)
       addToDb(jobs.id)
@@ -79,7 +79,7 @@ const JobDetail = () => {
                         <p className='font-semibold text-xl'><span className='font-bold'>Address:</span> {jobDetail && jobDetail.location}</p>
                     </div>
 
-                    <button onClick={() => handleViewDetails(jobDetail)} className='mt-8 hover:bg-purple-600 bg-purple-500 py-3 px-4 font-bold text-white rounded w-full'>Apply Now</button>
+                    <button onClick={() => handleAppliedJob(jobDetail)} className='mt-8 hover:bg-purple-600 bg-purple-500 py-3 px-4 font-bold text-white rounded w-full'>Apply Now</button>
                 </div>
             </div>
         </div>
