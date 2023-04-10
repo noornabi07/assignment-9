@@ -10,6 +10,7 @@ import {
 import Home from './components/Home/Home';
 import Statistics from './components/Statistics/Statistics';
 import Banner from './components/Banner/Banner';
+import getData from './fetchData';
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Banner></Banner>,
-        loader: () => fetch('categorie-data.json')
+        loader: getData
       },
       {
         path: '/statistics',

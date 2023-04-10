@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import img from '../../../public/banner-cover.png'
 import { useLoaderData } from 'react-router-dom';
 import Category from '../Category/Category';
+import Feature from '../Feature/Feature';
 
 const Banner = () => {
-    const categories = useLoaderData();
-    // console.log(categories)
+    const [category, setCategory] = useState([])
+    const features = useLoaderData()
+    console.log(features)
+
+    useEffect(() => {
+        fetch('categorie-data.json')
+            .then(res => res.json())
+            .then(data => setCategory(data))
+    }, [])
+
     return (
         <div>
             {/* Banner section */}
@@ -26,12 +35,29 @@ const Banner = () => {
                 <p className='font-semibol text-lg text-gray-500'>Explore thousands of job opportunities with all the information you need. Its your future</p>
                 <div className='grid grid-cols-4 gap-4'>
                     {
-                        categories.map(category => <Category
+                        category.map(category => <Category
                             key={category.id}
                             category={category}
                         ></Category>)
                     }
                 </div>
+            </div>
+
+            {/* Feature section */}
+            <div className='mt-20 px-20'>
+                <div className='text-center mb-16'>
+                    <h2 className='font-bold text-4xl mb-4'>Featured Jobs</h2>
+                    <p className='font-semibol text-lg text-gray-500'>Explore thousands of job opportunities with all the information you need. Its your future</p>
+                </div>
+                <div className='grid grid-cols-2 gap-5'>
+                    {
+                        features.map(feature => <Feature
+                            key={feature.id}
+                            feature={feature}
+                        ></Feature>)
+                    }
+                </div>
+
             </div>
 
         </div>
