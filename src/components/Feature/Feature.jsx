@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot, faCircleDollarToSlot } from '@fortawesome/free-solid-svg-icons'
 
-const Feature = ({ feature }) => {
+const Feature = ({ feature, handleViewDetails }) => {
     const { id, logo, name, title, type1, type2, address, salary } = feature;
     return (
         <div className='border-2 border-gray-400 p-6 rounded-lg'>
@@ -23,7 +23,7 @@ const Feature = ({ feature }) => {
                     <p className='font-semibold text-xl text-gray-500'>{salary}</p>
                 </div>
             </div>
-            <button className='mt-4 hover:bg-purple-600 bg-purple-500 py-2 px-4 font-bold text-white rounded'>View Details</button>
+            <button onClick={() => handleViewDetails(feature)} className='mt-4 hover:bg-purple-600 bg-purple-500 py-2 px-4 font-bold text-white rounded'>View Details</button>
         </div>
     );
 };

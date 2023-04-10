@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import img from '../../../public/banner-cover.png'
 import { useLoaderData } from 'react-router-dom';
 import Category from '../Category/Category';
 import Feature from '../Feature/Feature';
+import JobDetail from '../JobDetail/JobDetail';
+import { addToDb, getShoppingCart } from '../../utilities/fakeDb';
+
 
 const Banner = () => {
     const [category, setCategory] = useState([])
+    const [feature, setFeature] = useState([])
     const features = useLoaderData()
 
     useEffect(() => {
@@ -13,6 +17,26 @@ const Banner = () => {
             .then(res => res.json())
             .then(data => setCategory(data))
     }, [])
+
+    useEffect( ()=>{
+        const appliedJob = getShoppingCart()
+        let saveJob = []
+        for(const id in appliedJob){
+            const addedJob = features.find(job => job.id === id);
+            if(addedJob){
+                const quantity = appliedJob[id];
+                addedJob.quantity = quantity;
+                saveJob.push(addedJob)
+            }
+        }
+        setFeature(saveJob)
+    }, [features])
+
+    const handleViewDetails = shop =>{
+      const newJob = [...feature, shop]
+      setFeature(newJob)
+      addToDb(shop.id)
+    }
 
     return (
         <div>
@@ -53,6 +77,7 @@ const Banner = () => {
                         features.slice(0, 4).map(feature => <Feature
                             key={feature.id}
                             feature={feature}
+                            handleViewDetails={handleViewDetails}
                         ></Feature>)
                     }
                 </div>

@@ -10,7 +10,9 @@ import {
 import Home from './components/Home/Home';
 import Statistics from './components/Statistics/Statistics';
 import Banner from './components/Banner/Banner';
-import getData from './fetchData';
+import Applied from './components/Applied/Applied';
+import getData from '../src/fetchData'
+import appliedData from './appliedData';
 
 const router = createBrowserRouter([
   {
@@ -23,8 +25,13 @@ const router = createBrowserRouter([
         loader: getData
       },
       {
-        path: '/statistics',
+        path: 'statistics',
         element: <Statistics></Statistics>
+      },
+      {
+        path: 'applied',
+        element: <Applied></Applied>,
+        loader: appliedData
       }
     ]
   }
