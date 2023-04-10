@@ -7,7 +7,6 @@ import Feature from '../Feature/Feature';
 const Banner = () => {
     const [category, setCategory] = useState([])
     const features = useLoaderData()
-    console.log(features)
 
     useEffect(() => {
         fetch('categorie-data.json')
@@ -51,13 +50,16 @@ const Banner = () => {
                 </div>
                 <div className='grid grid-cols-2 gap-5'>
                     {
-                        features.map(feature => <Feature
+                        features.slice(0, 4).map(feature => <Feature
                             key={feature.id}
                             feature={feature}
                         ></Feature>)
                     }
                 </div>
 
+                <div className='text-center py-6'>
+                    <button className='mt-4 hover:bg-purple-600 bg-purple-500 py-3 px-4 font-bold text-white rounded'>See All Jobs</button>
+                </div>
             </div>
 
         </div>
