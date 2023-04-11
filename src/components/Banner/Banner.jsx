@@ -17,21 +17,20 @@ const Banner = () => {
 
     // features data part here
     const [jobs, setJobs] = useState([])
-    const [totalJob, setTotalJob] = useState([])
-    
+
     const features = useLoaderData()
 
-    useEffect( () =>{
+    useEffect(() => {
         const forJobs = features.slice(0, 4);
         setJobs(forJobs)
 
-    }, [totalJob])
+    }, [])
 
-    const seeAllBtn =() =>{
-        setJobs(totalJob)
-        setTotalJob(features)
-        
+    const seeAllBtn = () => {
+        setJobs(features)
     }
+
+
 
     return (
         <div>
