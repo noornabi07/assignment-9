@@ -30,10 +30,8 @@ const Banner = () => {
         setJobs(features)
     }
 
-
-
     return (
-        <div>
+        <div className='mb-8'>
             {/* Banner section */}
             <div className='md:flex justify-between items-center px-3 md:px-20 bg-gray-100'>
                 <div>
@@ -75,9 +73,10 @@ const Banner = () => {
                     }
                 </div>
 
-                <div className='text-center py-6'>
+                <div className={`text-center py-6 ${jobs.length > 4 ? 'hidden' : ''}`}>
                     <button onClick={() => seeAllBtn()} className='mt-4 hover:bg-purple-600 bg-purple-500 py-3 px-4 font-bold text-white rounded'>See All Jobs</button>
                 </div>
+
             </div>
 
         </div>
