@@ -19,22 +19,22 @@ const Banner = () => {
     return (
         <div>
             {/* Banner section */}
-            <div className='flex justify-between items-center px-20 bg-gray-100'>
+            <div className='md:flex justify-between items-center px-3 md:px-20 bg-gray-100'>
                 <div>
-                    <p className='font-bold text-7xl '>One Step</p>
-                    <p className='font-bold text-7xl my-3'>Closer To Your</p>
-                    <p className='font-bold text-7xl text-purple-500'>Dream Job</p>
+                    <p className='font-bold text-3xl md:text-7xl '>One Step</p>
+                    <p className='font-bold text-3xl md:text-7xl my-3'>Closer To Your</p>
+                    <p className='font-bold text-3xl md:text-7xl text-purple-500'>Dream Job</p>
                     <p className='mt-5 text-lg text-gray-600'>Explore thousands of job opportunities with all the information you need. Its your future. Come find it. Manage all your job application from start to finish.</p>
                     <button className='bg-purple-500 py-2 px-8 rounded-lg mt-4 text-white text-xl'>Get Start</button>
                 </div>
-                <img className='w-2/4' src={img} alt="" />
+                <img className='md:w-2/4' src={img} alt="" />
             </div>
 
             {/* Job Category section */}
-            <div className='text-center mt-20 px-20 mb-10'>
+            <div className='text-center mt-20 px-3 md:px-20 mb-10'>
                 <h2 className='font-bold text-4xl mb-8'>Job Category List</h2>
                 <p className='font-semibol text-lg text-gray-500'>Explore thousands of job opportunities with all the information you need. Its your future</p>
-                <div className='grid grid-cols-4 gap-4'>
+                <div className='grid md:grid-cols-4 gap-4'>
                     {
                         category.map(category => <Category
                             key={category.id}
@@ -45,12 +45,12 @@ const Banner = () => {
             </div>
 
             {/* Feature section */}
-            <div className='mt-20 px-20'>
+            <div className='mt-20 md:px-20 px-3'>
                 <div className='text-center mb-16'>
                     <h2 className='font-bold text-4xl mb-4'>Featured Jobs</h2>
                     <p className='font-semibol text-lg text-gray-500'>Explore thousands of job opportunities with all the information you need. Its your future</p>
                 </div>
-                <div className='grid grid-cols-2 gap-5'>
+                <div className='grid md:grid-cols-2 gap-5'>
                     {
                         features.slice(0, 4).map(feature => <Feature
                             key={feature.id}

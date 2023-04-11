@@ -17,11 +17,11 @@ const Feature = ({ feature }) => {
             <div className='flex gap-8'>
                 <div className='flex items-center'>
                     <FontAwesomeIcon className='text-xl font-bold text-gray-500 mr-2' icon={faLocationDot} />
-                    <p className='font-semibold text-xl text-gray-500'>{address}</p>
+                    <p className='font-semibold md:text-xl text-gray-500'>{address}</p>
                 </div>
                 <div className='flex items-center'>
                     <FontAwesomeIcon className='text-xl font-bold text-gray-500 mr-2' icon={faCircleDollarToSlot} />
-                    <p className='font-semibold text-xl text-gray-500'>{salary}</p>
+                    <p className='font-semibold md:text-xl text-gray-500'>{salary}</p>
                 </div>
             </div>
             <Link to={`/${id}`}>
