@@ -15,11 +15,14 @@ import getData from '../src/fetchData'
 import appliedData from './appliedData';
 import JobDetail from './components/JobDetail/JobDetail';
 import JobApplied from './components/JobApplied/JobApplied';
+import ErrorPage from './components/ErrorPage/ErrorPage';
+import Blog from './components/Blog/Blog';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Home></Home>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: '/',
@@ -42,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: 'details',
         element: <JobDetail></JobDetail>
+      },
+      {
+        path: 'blog',
+        element: <Blog></Blog>
       }
     ]
   }
