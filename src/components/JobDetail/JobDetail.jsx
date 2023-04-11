@@ -6,6 +6,7 @@ import { addToDb, getShoppingCart } from '../../utilities/fakeDb';
 
 const JobDetail = () => {
     const jobId = useParams();
+    
     const [details, setDetails] = useState([]);
     useEffect(() => {
         fetch('feature-data.json')

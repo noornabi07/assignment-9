@@ -3,18 +3,35 @@ import img from '../../../public/banner-cover.png'
 import { useLoaderData } from 'react-router-dom';
 import Category from '../Category/Category';
 import Feature from '../Feature/Feature';
-import { addToDb, getShoppingCart } from '../../utilities/fakeDb';
 
 
 const Banner = () => {
+    // Categories data fetch
     const [category, setCategory] = useState([])
-    const features = useLoaderData()
 
     useEffect(() => {
         fetch('categorie-data.json')
             .then(res => res.json())
             .then(data => setCategory(data))
     }, [])
+
+    // features data part here
+    const [jobs, setJobs] = useState([])
+    const [totalJob, setTotalJob] = useState([])
+    
+    const features = useLoaderData()
+
+    useEffect( () =>{
+        const forJobs = features.slice(0, 4);
+        setJobs(forJobs)
+
+    }, [totalJob])
+
+    const seeAllBtn =() =>{
+        setJobs(totalJob)
+        setTotalJob(features)
+        
+    }
 
     return (
         <div>
@@ -52,7 +69,7 @@ const Banner = () => {
                 </div>
                 <div className='grid md:grid-cols-2 gap-5'>
                     {
-                        features.slice(0, 4).map(feature => <Feature
+                        jobs.map(feature => <Feature
                             key={feature.id}
                             feature={feature}
                         ></Feature>)
@@ -60,7 +77,7 @@ const Banner = () => {
                 </div>
 
                 <div className='text-center py-6'>
-                    <button className='mt-4 hover:bg-purple-600 bg-purple-500 py-3 px-4 font-bold text-white rounded'>See All Jobs</button>
+                    <button onClick={() => seeAllBtn(jobs)} className='mt-4 hover:bg-purple-600 bg-purple-500 py-3 px-4 font-bold text-white rounded'>See All Jobs</button>
                 </div>
             </div>
 
