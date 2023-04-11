@@ -77,7 +77,7 @@ const Banner = () => {
                 </div>
 
                 <div className='text-center py-6'>
-                    <button onClick={() => seeAllBtn(jobs)} className='mt-4 hover:bg-purple-600 bg-purple-500 py-3 px-4 font-bold text-white rounded'>See All Jobs</button>
+                    <button onClick={() => seeAllBtn()} className='mt-4 hover:bg-purple-600 bg-purple-500 py-3 px-4 font-bold text-white rounded'>See All Jobs</button>
                 </div>
             </div>
 
